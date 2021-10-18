@@ -13,3 +13,14 @@
 
 # Dependency directories (remove the comment below to include it)
 # vendor/
+
+# Terraform temp and var files
+*.tfvars
+# Local .terraform directories
+**/.terraform/*
+
+#Terraform lock file as this is managed by remote GCS storage
+.terraform.lock.hcl
+
+# Crash log files
+crash.log
