@@ -1,10 +1,15 @@
 package ringsig
 
+import (
+	"crypto/sha256"
+)
+
 type RingSignature struct {
 	k []int
 	l int
 	n int
 	q int
+	p []byte
 }
 
 func New(k []int, L int) RingSignature {
@@ -14,10 +19,12 @@ func New(k []int, L int) RingSignature {
 	} else {
 		q = 1
 	}
-	r := RingSignature{k, L, len(k), q}
+	r := RingSignature{k, L, len(k), q, []byte{}}
 	return r
 }
 
 func permutate(ring RingSignature, m string) {
-
+	h := sha256.New()
+	h.Write([]byte(m))
+	ring.p = h.Sum(nil)
 }
