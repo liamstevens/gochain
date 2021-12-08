@@ -28,3 +28,8 @@ func permutate(ring RingSignature, m string) {
 	h.Write([]byte(m))
 	ring.p = h.Sum(nil)
 }
+
+func Verify(ring RingSignature, m string, X []byte) {
+	permutate(ring, m)
+
+}
