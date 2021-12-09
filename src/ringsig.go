@@ -33,3 +33,5 @@ func Verify(ring RingSignature, m string, X []byte) {
 	permutate(ring, m)
 
 }
+
+func f(ring RingSignature, i int) {}
