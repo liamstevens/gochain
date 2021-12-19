@@ -21,13 +21,10 @@ func (b *Block) DeriveHash() {
 	hash := sha256.Sum256(info)
 	//This performs the actual hashing algorithm
 	b.Hash = hash[:]
-	//If this ^ doesn't make sense, you can look up slice defaults
 }
 
 func CreateBlock(data string, prevHash []byte) *Block {
 	block := &Block{[]byte{}, []byte(data), prevHash}
-	//If this is gibberish to you look up
-	// pointer syntax in go
 	block.DeriveHash()
 	return block
 }
