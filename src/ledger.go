@@ -16,3 +16,8 @@ func createTransaction(s []byte, d []byte, v int) *Transaction {
 	t := &Transaction{s, d, v}
 	return t
 }
+
+func createLedger(t []Transaction, p *Ledger, i int) *Ledger {
+	l := &Ledger{t, p, i}
+	return l
+}
