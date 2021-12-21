@@ -1,4 +1,4 @@
-package ringsig
+package gochain
 
 import (
 	"crypto/sha256"
