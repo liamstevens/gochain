@@ -12,4 +12,7 @@ type Ledger struct {
 	id             int
 }
 
-func createTransaction()
+func createTransaction(s []byte, d []byte, v int) *Transaction {
+	t := &Transaction{s, d, v}
+	return t
+}
