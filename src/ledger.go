@@ -7,6 +7,7 @@ type Transaction struct {
 }
 
 type Ledger struct {
+	length         int
 	transactions   []Transaction
 	previousLedger *Ledger
 	id             int
@@ -17,7 +18,13 @@ func createTransaction(s []byte, d []byte, v int) *Transaction {
 	return t
 }
 
-func createLedger(t []Transaction, p *Ledger, i int) *Ledger {
-	l := &Ledger{t, p, i}
+func createLedger(le int, t []Transaction, p *Ledger, i int) *Ledger {
+	l := &Ledger{le, t, p, i}
 	return l
+}
+
+func (ledger *Ledger) addTransaction(t Transaction) {
+	if len(ledger.transactions) < ledger.length {
+		ledger.transactions = append(ledger.transactions, t)
+	}
 }
