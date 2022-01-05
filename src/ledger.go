@@ -23,8 +23,13 @@ func createLedger(le int, t []Transaction, p *Ledger, i int) *Ledger {
 	return l
 }
 
+//TODO: transaction validation
 func (ledger *Ledger) addTransaction(t Transaction) {
 	if len(ledger.transactions) < ledger.length {
 		ledger.transactions = append(ledger.transactions, t)
 	}
+}
+
+func (ledger *Ledger) validateTransaction(t Transaction) {
+
 }
