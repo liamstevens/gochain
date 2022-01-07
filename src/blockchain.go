@@ -5,6 +5,7 @@ import (
 	"crypto/sha256"
 )
 
+//Define basal struct for blockchain and methods for use in composition of token and ledgers
 type Block struct {
 	Hash     []byte
 	Data     []byte

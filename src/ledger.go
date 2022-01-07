@@ -4,6 +4,7 @@ type Transaction struct {
 	source      []byte
 	destination []byte
 	volume      int
+	Block       //Anonymous member for referencing block attributes
 }
 
 type Ledger struct {
@@ -14,7 +15,7 @@ type Ledger struct {
 }
 
 func createTransaction(s []byte, d []byte, v int) *Transaction {
-	t := &Transaction{s, d, v}
+	t := &Transaction{s, d, v, *CreateBlock(string(v), []byte(nil))}
 	return t
 }
 
