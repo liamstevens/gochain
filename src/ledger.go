@@ -14,9 +14,14 @@ type Ledger struct {
 	id             int
 }
 
-func createTransaction(s []byte, d []byte, v int) *Transaction {
-	t := &Transaction{s, d, v, *CreateBlock(string(v), []byte(nil))}
-	return t
+func createTransaction(s []byte, d []byte, v int, mint bool) *Transaction {
+	if mint {
+		t := &Transaction{s, d, v, *CreateBlock(string(v), []byte{})}
+		return t
+	} else {
+		t := &Transaction{s, d, v, *CreateBlock(string(v), s)}
+		return t
+	}
 }
 
 func createLedger(le int, t []Transaction, p *Ledger, i int) *Ledger {
