@@ -16,10 +16,10 @@ type Ledger struct {
 
 func createTransaction(s []byte, d []byte, v int, mint bool) *Transaction {
 	if mint {
-		t := &Transaction{s, d, v, *CreateBlock([]byte(string(v)), []byte{})}
+		t := &Transaction{s, d, v, *CreateBlock([]byte(string(rune(v))), []byte{})}
 		return t
 	} else {
-		t := &Transaction{s, d, v, *CreateBlock([]byte(string(v)), s)}
+		t := &Transaction{s, d, v, *CreateBlock([]byte(string(rune(v))), s)}
 		return t
 	}
 }
