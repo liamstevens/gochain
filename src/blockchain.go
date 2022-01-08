@@ -24,20 +24,20 @@ func (b *Block) DeriveHash() {
 	b.Hash = hash[:]
 }
 
-func CreateBlock(data string, prevHash []byte) *Block {
+func CreateBlock(data []byte, prevHash []byte) *Block {
 	block := &Block{[]byte{}, []byte(data), prevHash}
 	block.DeriveHash()
 	return block
 }
 
-func (chain *BlockChain) AddBlock(data string) {
+func (chain *BlockChain) AddBlock(data []byte) {
 	prevBlock := chain.blocks[len(chain.blocks)-1]
 	new := CreateBlock(data, prevBlock.Hash)
 	chain.blocks = append(chain.blocks, new)
 }
 
 func Genesis() *Block {
-	return CreateBlock("Genesis", []byte{})
+	return CreateBlock([]byte("Genesis"), []byte{})
 }
 
 func InitBlockChain() *BlockChain {
