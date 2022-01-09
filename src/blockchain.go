@@ -2,7 +2,12 @@ package gochain
 
 import (
 	"bytes"
+	"crypto"
+	"crypto/rand"
+	"crypto/rsa"
 	"crypto/sha256"
+	"fmt"
+	"os"
 )
 
 //Define basal struct for blockchain and methods for use in composition of token and ledgers
@@ -42,4 +47,24 @@ func Genesis() *Block {
 
 func InitBlockChain() *BlockChain {
 	return &BlockChain{[]*Block{Genesis()}}
+}
+
+func (b *Block) SignBlock(privKey *rsa.PrivateKey) []byte {
+	rng := rand.Reader
+	signature, err := rsa.SignPKCS1v15(rng, privKey, crypto.SHA256, b.Hash[:])
+	if err != nil {
+		return nil
+	} else {
+		return signature
+	}
+}
+
+func (b *Block) VerifyBlock(pubKey *rsa.PublicKey, signature []byte) bool {
+	err := rsa.VerifyPKCS1v15(pubKey, crypto.SHA256, b.Hash[:], signature)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error from verification: %s\n", err)
+		return false
+	} else {
+		return true
+	}
 }
