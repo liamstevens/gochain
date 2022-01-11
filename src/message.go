@@ -1,8 +1,13 @@
 package gochain
 
+import (
+	"time"
+)
+
 //Struct for the purpose of constructing messages.
 type Message struct {
 	id          int
+	nodeId      int
 	messageType int
 	timestamp   []byte
 	contents    []byte
@@ -14,3 +19,8 @@ const PONG = 0x01
 const NEW_LEDGER = 0x03
 const NEW_TX = 0x04
 const AGREEMENT = 0x05
+
+func constructMessage(id int, nodeid int, mtype int, cont []byte) Message {
+	m := Message{id, nodeid, mtype, []byte(time.Now().String()), cont}
+	return m
+}
