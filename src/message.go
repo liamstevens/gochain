@@ -7,7 +7,7 @@ import (
 //Struct for the purpose of constructing messages.
 type Message struct {
 	id          int
-	nodeId      int
+	nodeId      []byte
 	messageType int
 	timestamp   []byte
 	contents    []byte
@@ -22,7 +22,7 @@ const AGREEMENT = 0x05
 const UNLREQ = 0x06
 const UNLRESP = 0x07
 
-func constructMessage(id int, nodeid int, mtype int, cont []byte) Message {
+func constructMessage(id int, nodeid []byte, mtype int, cont []byte) Message {
 	m := Message{id, nodeid, mtype, []byte(time.Now().String()), cont}
 	return m
 }
