@@ -19,6 +19,8 @@ const PONG = 0x01
 const NEW_LEDGER = 0x03
 const NEW_TX = 0x04
 const AGREEMENT = 0x05
+const UNLREQ = 0x06
+const UNLRESP = 0x07
 
 func constructMessage(id int, nodeid int, mtype int, cont []byte) Message {
 	m := Message{id, nodeid, mtype, []byte(time.Now().String()), cont}

@@ -10,6 +10,15 @@ import (
 //Generate initial UNL - contact curator server and select a random subset of all nodes provided.
 //This ensures a good spread of UNL configurations but does mean that additional configuration
 //should be done if this mechanism is undesired.
+func fetchUNL(file string) {
+	confFile, ferr := os.Open(filename)
+	if ferr != nil {
+		fmt.Println("error:", ferr)
+		return
+	}
+	//Contact curator server and save response
+
+}
 
 //Generate Node UID - used for stamping of messages sent by client and server
 func generateNodeUID(filename string) {
